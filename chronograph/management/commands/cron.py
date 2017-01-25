@@ -9,6 +9,7 @@ from multiprocessing import Process
 
 logger = logging.getLogger('chronograph.commands.cron')
 
+
 class JobProcess(Process):
     """
     Each ``Job`` gets run in it's own ``Process``.
@@ -22,6 +23,7 @@ class JobProcess(Process):
     def run(self):
         logger.info("Running Job: '%s'" % self.job)
         self.job.run()
+
 
 class Command(BaseCommand):
     help = 'Runs all jobs that are due.'
