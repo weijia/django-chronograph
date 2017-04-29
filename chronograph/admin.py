@@ -7,7 +7,10 @@ from django.contrib import admin
 from django.core.management import get_commands
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.db import models
-from django.forms.util import flatatt
+try:
+    from django.forms.utils import flatatt
+except:
+    from django.forms.util import flatatt
 from django.http import HttpResponseRedirect, Http404
 from django.template.defaultfilters import linebreaks
 from django.utils.datastructures import MultiValueDict
