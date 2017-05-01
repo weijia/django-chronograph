@@ -79,7 +79,8 @@ class JobHeartbeatThread(Thread):
             self.lock_file.flush()
             # The following is added for windows, because in windows, the modified time will not be updated using
             # the above way.
-            os.utime(self.lock_file.name, (time.time(), time.time()))
+            if 'nt' in sys.builtin_module_names:
+                os.utime(self.lock_file.name, (time.time(), time.time()))
             time.sleep(1)
 
     def stop(self):
