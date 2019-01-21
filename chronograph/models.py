@@ -169,7 +169,10 @@ class Job(models.Model):
         if self.disabled:
             return _('never (disabled)')
 
-        delta = self.next_run - dates.now()
+        if self.next_run is not None:
+            delta = self.next_run - dates.now()
+        else:
+            delta = dates.now() - dates.now()
         if delta.days < 0:
             # The job is past due and should be run as soon as possible
             if self.check_is_running():
